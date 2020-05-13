@@ -1,4 +1,4 @@
-ESX                           = nil
+ESX = nil
 local ESXLoaded = false
 local robbing = false
 
@@ -250,7 +250,8 @@ Citizen.CreateThread(function()
                             end, i)
                             while canRob == nil do
                                 Wait(0)
-                            endlocal xPlayer = ESX.GetPlayerData()
+                            end
+							local xPlayer = ESX.GetPlayerData()
 							if xPlayer.job.name ~= 'police' then
 								if canRob == true then
 										TriggerServerEvent('loffe_robbery:alarm', i)
@@ -297,15 +298,16 @@ Citizen.CreateThread(function()
 											robbing = false
 										end
 								elseif canRob == 'no_cops' then
-                                local wait = GetGameTimer()+5000
-                                while wait >= GetGameTimer() do
-                                    Wait(0)
-                                    DrawText3D(GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 1.5, 0.4), Translation[Config.Locale]['no_cops'])
-                                end
-                            else
-                                TriggerEvent('loffe_robbery:talk', i, '~g~*' .. Translation[Config.Locale]['shopkeeper'] .. '* ~w~' .. Translation[Config.Locale]['robbed'], 5)
-                                Wait(2500)
-                            end
+									local wait = GetGameTimer()+5000
+									while wait >= GetGameTimer() do
+										Wait(0)
+										DrawText3D(GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 1.5, 0.4), Translation[Config.Locale]['no_cops'])
+									end
+								else
+									TriggerEvent('loffe_robbery:talk', i, '~g~*' .. Translation[Config.Locale]['shopkeeper'] .. '* ~w~' .. Translation[Config.Locale]['robbed'], 5)
+									Wait(2500)
+								end
+							end
                         end
                     end
                 end
